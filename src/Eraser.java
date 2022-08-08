@@ -26,21 +26,27 @@ public class Eraser {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhập vào phần tử cần xoá:");
         int x = sc.nextInt();
-        for(int h=0; h<array.length; h++){
-            if (x == array[h]) {
-                for (int k = h; k < array.length - 1; k++) {
-                    array[k] = array[k + 1];
-                }
-            }
-        }
+        int[] newArray = arrayEraser(array, x);
+
 
         //In ra mảng mới
         System.out.printf("%-20s%s", "Các giá trị của mảng: ", "");
-        for (int j = 0; j < array.length; j++) {
-            System.out.print(array[j] + "\t");
+        for (int j = 0; j < newArray.length; j++) {
+            System.out.print(newArray[j] + "\t");
         }
     }
 
-
+    public static int[] arrayEraser(int[] array, int x) {
+        int indexX =0;
+        for (int i=0; i<array.length; i++) {
+            if (array[i] == x) indexX = i;
+        }
+        int[] newArray = new int[array.length-1];
+        for(int i=0; i<newArray.length; i++){
+            if (i < indexX) newArray[i] = array[i];
+            else if (i >= indexX) newArray[i] = array [i+1];
+        }
+        return newArray;
+    }
 
 }
